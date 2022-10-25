@@ -1,0 +1,9 @@
+[package]
+name = "child-processes"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+iced = { git = "https://github.com/iced-rs/iced.git", branch = "master", features = ["tokio"] }
+iced_native = { git = "https://github.com/iced-rs/iced.git", branch = "master" }
+tokio = { version = "1.21.2", features = ["process", "sync", "io-util"] }

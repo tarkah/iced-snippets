@@ -1,0 +1,8 @@
+[workspace.package]
+version = "0.1.0"
+authors = ["tarkah <admin@tarkah.dev>"]
+description = "Iced Snippets"
+
+[workspace]
+resolver = "2"
+members = ["snippets/*"]

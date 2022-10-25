@@ -1,0 +1,7 @@
+[package]
+name = "iterable-component"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+iced = { git = "https://github.com/iced-rs/iced.git", branch = "master" }
