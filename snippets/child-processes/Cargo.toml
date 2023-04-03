@@ -4,6 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-iced = { version = "0.5", features = ["tokio"] }
-iced_native = "0.6"
+iced = { version = "0.8", features = ["tokio"] }
 tokio = { version = "1.21.2", features = ["process", "sync", "io-util"] }

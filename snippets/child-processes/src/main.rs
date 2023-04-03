@@ -1,9 +1,8 @@
 use iced::widget::{column, container};
 use iced::{
-    executor, subscription, Application, Command, Element, Event, Length, Settings, Subscription,
-    Theme,
+    executor, subscription, window, Application, Command, Element, Event, Length, Settings,
+    Subscription, Theme,
 };
-use iced_native::window;
 
 use self::backend::Backend;
 use self::process::Process;
@@ -26,7 +25,6 @@ enum Message {
 enum App {
     Idle,
     Running { backend: Backend, process: Process },
-    Exited,
 }
 
 impl Application for App {
@@ -48,14 +46,6 @@ impl Application for App {
             subscription::events().map(Message::Event),
             backend::run().map(Message::Backend),
         ])
-    }
-
-    fn should_exit(&self) -> bool {
-        match self {
-            App::Idle => false,
-            App::Running { .. } => false,
-            App::Exited => true,
-        }
     }
 
     fn update(&mut self, message: Message) -> Command<Message> {
@@ -91,11 +81,7 @@ impl Application for App {
 
                     Command::none()
                 }
-                backend::Message::Closed => {
-                    *self = Self::Exited;
-
-                    Command::none()
-                }
+                backend::Message::Closed => window::close(),
             },
         }
     }
@@ -103,7 +89,6 @@ impl Application for App {
     fn view(&self) -> Element<Message> {
         match self {
             App::Idle => column![].into(),
-            App::Exited => column![].into(),
             App::Running { process, .. } => container(process.view().map(Message::Process))
                 .width(Length::Fill)
                 .height(Length::Fill)

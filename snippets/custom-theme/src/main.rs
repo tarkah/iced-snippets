@@ -76,7 +76,7 @@ mod widget {
 
 mod theme {
     use iced::widget::{button, container, text};
-    use iced::{application, color, Color};
+    use iced::{application, color};
 
     #[derive(Debug, Clone, Copy, Default)]
     pub struct Theme;
